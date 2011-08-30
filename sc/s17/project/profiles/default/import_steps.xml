@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="sc.s17.project-upgrades" version="20110706-01"
+              handler="sc.s17.project.setuphandlers.doUpgrades"
+              title="Do upgrades">
+  <dependency step="plone_content" />
+  Do upgrades
+ </import-step>
+</import-steps>
