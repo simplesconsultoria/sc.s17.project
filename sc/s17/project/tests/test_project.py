@@ -55,16 +55,16 @@ class TestClientIntegration(unittest.TestCase):
         new_object = createObject(factory)
         self.failUnless(IProject.providedBy(new_object))
 
-#    def test_allowed_content_types(self):
-#        types = ['Image','File']
-#        self.failUnlessEqual(self.obj.getLocallyAllowedTypes(), types)
-#        self.failUnlessEqual(self.obj.getImmediatelyAddableTypes(), types)
-#        self.assertRaises(ValueError,
-#                          self.obj.invokeFactory, 'Document', 'foo')
-#        try:
-#            self.obj.invokeFactory('Image', 'foo')
-#        except Unauthorized:
-#            self.fail()
+    def test_allowed_content_types(self):
+        types = ['Image','File']
+        self.failUnlessEqual(self.obj.getLocallyAllowedTypes(), types)
+        self.failUnlessEqual(self.obj.getImmediatelyAddableTypes(), types)
+        self.assertRaises(ValueError,
+                          self.obj.invokeFactory, 'Document', 'foo')
+        try:
+            self.obj.invokeFactory('Image', 'foo')
+        except Unauthorized:
+            self.fail()
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)

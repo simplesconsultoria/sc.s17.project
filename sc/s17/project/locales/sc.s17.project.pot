@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2009-02-27 17:49+0000\n"
+"POT-Creation-Date: 2011-09-01 18:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,5 +12,21 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: sc.s17.project\n"
+"Domain: DOMAIN\n"
+
+#: ../project.py:12
+msgid ""
+msgstr ""
+
+#: ../project.py:16
+msgid "Description"
+msgstr ""
+
+#: ../profiles/default/types/sc.s17.project.project.xml
+msgid "Project"
+msgstr ""
+
+#: ../project.py:11
+msgid "Title"
+msgstr ""
 

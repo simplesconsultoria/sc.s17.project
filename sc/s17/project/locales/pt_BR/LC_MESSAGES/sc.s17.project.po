@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2009-02-27 17:49+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: Simples Consultoria <products@simplesconsultoria.com.br>\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2011-09-01 15:31-0300\n"
+"Last-Translator: Gustavo Lepri <lepri@simplesconsultoria.com.br>\n"
 "Language-Team: Simples Consultoria <products@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -13,4 +13,16 @@ msgstr ""
 "Language-Name: Brazilian Portuguese\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: sc.s17.project\n"
+
+#: ../project.py:16
+msgid "Description"
+msgstr "Descrição"
+
+#: ../profiles/default/types/sc.s17.project.project.xml
+msgid "Project"
+msgstr "Projeto"
+
+#: ../project.py:11
+msgid "Title"
+msgstr "Título"
 
