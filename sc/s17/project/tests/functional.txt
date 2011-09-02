@@ -1,0 +1,33 @@
+Functional test:
+
+    >>> app = layer['app']
+    >>> portal = layer['portal']
+    >>> request = layer['request']
+
+    >>> from plone.testing.z2 import Browser
+    >>> browser = Browser(app)
+    >>> portalURL = portal.absolute_url()
+
+    >>> from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
+    >>> browser.open(portalURL + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = SITE_OWNER_NAME
+    >>> browser.getControl(name='__ac_password').value = SITE_OWNER_PASSWORD
+    >>> browser.getControl(name='submit').click()
+
+    >>> 'You are now logged in' in browser.contents
+    True
+
+    >>> browser.getLink('Home').click()
+    >>> browser.getLink('Project').click()
+    >>> browser.getControl('Title').value = 'Lorem ipsum'
+    >>> browser.getControl('Description').value = 'Curabitur vestibulum ullamcorper rutrum.'
+    >>> browser.getControl('Save').click()
+    >>> 'Item created' in browser.contents
+    True
+
+    >>> browser.getLink('Lorem ipsum').click()
+    >>> 'Curabitur vestibulum ullamcorper rutrum.' in browser.contents
+    True
+
+    >>> open('/tmp/test.html', 'w').write(browser.contents)
+

@@ -7,7 +7,7 @@ version = open(os.path.join("sc", "s17", "project", "version.txt")).read().strip
 setup(name='sc.s17.project',
       version=version,
       description="",
-      long_description=open(os.path.join("sc", "s17", "project", "README.txt")).read() + "\n" +
+      long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
@@ -27,13 +27,15 @@ setup(name='sc.s17.project',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'setuptools',
-          'plone.app.dexterity',
-          'collective.autopermission',
-      ],
+        'setuptools',
+        'plone.app.dexterity',
+        'plone.app.referenceablebehavior',
+        'collective.autopermission',
+        ],
+      extras_require={
+        'test': ['plone.app.testing'],
+        },
       entry_points="""
-      # -*- Entry points: -*-
-
       [z3c.autoinclude.plugin]
       target = plone
       """,
