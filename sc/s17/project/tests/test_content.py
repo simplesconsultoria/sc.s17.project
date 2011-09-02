@@ -16,8 +16,10 @@ from Products.CMFCore.utils import getToolByName
 from sc.s17.project.content import IProject
 from sc.s17.project.testing import INTEGRATION_TESTING
 
+ctype = 'sc.s17.project.content'
 
-class TestClientIntegration(unittest.TestCase):
+
+class IntegrationTest(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
 
@@ -30,25 +32,25 @@ class TestClientIntegration(unittest.TestCase):
 
         # overrides default behavior to make testing easier
         types = getToolByName(self.portal, 'portal_types')
-        types['sc.s17.project.content'].global_allow = True
+        types[ctype].global_allow = True
 
-        self.folder.invokeFactory('sc.s17.project.content', 'obj')
+        self.folder.invokeFactory(ctype, 'obj')
         self.obj = self.folder['obj']
 
     def test_adding(self):
         self.failUnless(IProject.providedBy(self.obj))
 
     def test_fti(self):
-        fti = queryUtility(IDexterityFTI, name='sc.s17.project.content')
+        fti = queryUtility(IDexterityFTI, name=ctype)
         self.assertNotEquals(None, fti)
 
     def test_schema(self):
-        fti = queryUtility(IDexterityFTI, name='sc.s17.project.content')
+        fti = queryUtility(IDexterityFTI, name=ctype)
         schema = fti.lookupSchema()
         self.assertEquals(IProject, schema)
 
     def test_factory(self):
-        fti = queryUtility(IDexterityFTI, name='sc.s17.project.content')
+        fti = queryUtility(IDexterityFTI, name=ctype)
         factory = fti.factory
         new_object = createObject(factory)
         self.failUnless(IProject.providedBy(new_object))
@@ -64,6 +66,22 @@ class TestClientIntegration(unittest.TestCase):
             self.obj.invokeFactory('Image', 'bar')
         except Unauthorized:
             self.fail()
+
+
+class GlobalAllowTest(unittest.TestCase):
+
+    layer = INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal.invokeFactory('Folder', 'test-folder')
+        setRoles(self.portal, TEST_USER_ID, ['Member'])
+        self.folder = self.portal['test-folder']
+
+    def test_disallowed(self):
+        # test normal behavior of global_allow=False
+        self.assertRaises(ValueError, self.folder.invokeFactory, ctype, 'obj')
 
 
 def test_suite():
