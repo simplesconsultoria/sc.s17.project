@@ -12,6 +12,7 @@ from plone.app.testing import setRoles
 from plone.dexterity.interfaces import IDexterityFTI
 
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 
 from sc.s17.project.content import IProject
 from sc.s17.project.testing import INTEGRATION_TESTING
@@ -57,10 +58,23 @@ class IntegrationTest(unittest.TestCase):
 
     def test_allowed_content_types(self):
         types = ['File', 'Image']
-        self.failUnlessEqual(self.obj.getLocallyAllowedTypes(), types)
-        self.failUnlessEqual(self.obj.getImmediatelyAddableTypes(), types)
+
+        # test allowed content types
+        allowed_types = [t.getId() for t in self.obj.allowedContentTypes()]
+        for t in types:
+            self.failUnless(t in allowed_types)
+
+        # test addable content types on menu
+        constrain = IConstrainTypes(self.obj, None)
+        if constrain:
+            immediately_addable_types = constrain.getLocallyAllowedTypes()
+            for t in types:
+                self.failUnless(t in immediately_addable_types)
+
+        # trying to add any other content type raises an error
         self.assertRaises(ValueError,
                           self.obj.invokeFactory, 'Document', 'foo')
+
         try:
             self.obj.invokeFactory('File', 'foo')
             self.obj.invokeFactory('Image', 'bar')
@@ -80,7 +94,7 @@ class GlobalAllowTest(unittest.TestCase):
         self.folder = self.portal['test-folder']
 
     def test_disallowed(self):
-        # test normal behavior of global_allow=False
+        # test normal behavior of global_allow=False as declared on XML
         self.assertRaises(ValueError, self.folder.invokeFactory, ctype, 'obj')
 
 
