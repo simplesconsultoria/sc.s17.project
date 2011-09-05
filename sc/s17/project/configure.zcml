@@ -7,12 +7,13 @@
     i18n_domain="sc.s17.project">
 
   <includeDependencies package="." />
-  <grok:grok package="." />
 
   <permission
       id="sc.s17.project.AddProject"
       title="sc.s17.project: Add Project"
       />
+
+  <grok:grok package="." />
 
   <genericsetup:registerProfile
       name="default"
@@ -34,7 +35,6 @@
 
   <i18n:registerTranslations directory="locales" />
   
-  <!-- -*- extra stuff goes here -*- -->
   <include package=".upgrades" />
 
 </configure>
