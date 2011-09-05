@@ -17,7 +17,7 @@ from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 from sc.s17.project.content import IProject
 from sc.s17.project.testing import INTEGRATION_TESTING
 
-ctype = 'sc.s17.project.content'
+ctype = 'sc.s17.project'
 
 
 class IntegrationTest(unittest.TestCase):

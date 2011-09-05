@@ -7,7 +7,7 @@ version = open(os.path.join("sc", "s17", "project", "version.txt")).read().strip
 setup(name='sc.s17.project',
       version=version,
       description="",
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open(os.path.join("sc", "s17", "project", "README.txt")).read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
