@@ -30,6 +30,8 @@ setup(name='sc.s17.project',
         'setuptools',
         'plone.app.dexterity',
         'plone.app.referenceablebehavior',
+        'plone.namedfile',
+        'plone.formwidget.namedfile',
         'collective.autopermission',
         ],
       extras_require={
