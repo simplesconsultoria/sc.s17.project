@@ -12,7 +12,6 @@ from plone.app.testing import setRoles
 from plone.dexterity.interfaces import IDexterityFTI
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 
 from sc.s17.project.content import IProject
 from sc.s17.project.testing import INTEGRATION_TESTING
@@ -58,18 +57,9 @@ class IntegrationTest(unittest.TestCase):
 
     def test_allowed_content_types(self):
         types = ['File', 'Image']
-
-        # test allowed content types
         allowed_types = [t.getId() for t in self.obj.allowedContentTypes()]
         for t in types:
             self.failUnless(t in allowed_types)
-
-        # test addable content types on menu
-        constrain = IConstrainTypes(self.obj, None)
-        if constrain:
-            immediately_addable_types = constrain.getLocallyAllowedTypes()
-            for t in types:
-                self.failUnless(t in immediately_addable_types)
 
         # trying to add any other content type raises an error
         self.assertRaises(ValueError,
@@ -80,6 +70,9 @@ class IntegrationTest(unittest.TestCase):
             self.obj.invokeFactory('Image', 'bar')
         except Unauthorized:
             self.fail()
+
+    def test_view(self):
+        self.obj.restrictedTraverse('@@view')
 
 
 class GlobalAllowTest(unittest.TestCase):
