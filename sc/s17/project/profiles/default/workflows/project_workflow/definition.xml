@@ -1,11 +1,15 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="project_workflow" title="Project workflow" description="Allows to define if a project is open or closed." state_variable="review_state" initial_state="open" manager_bypass="False">
+<dc-workflow workflow_id="project_workflow" title="Project workflow"
+   description="Allows to define if a project is open or closed."
+   state_variable="review_state" initial_state="open" manager_bypass="False"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+   i18n:domain="plone">
  <permission>Access contents information</permission>
  <permission>Add portal content</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
- <state state_id="open" title="Open">
-  <description>The project is open.</description>
+ <state state_id="open" title="Open" i18n:attributes="title">
+  <description i18n:translate="">The project is open.</description>
   <exit-transition transition_id="close"/>
   <permission-map name="Access contents information" acquired="True">
    <permission-role>Contributor</permission-role>
@@ -40,8 +44,8 @@
    <permission-role>Reviewer</permission-role>
   </permission-map>
  </state>
- <state state_id="closed" title="Closed">
-  <description>The project is closed.</description>
+ <state state_id="closed" title="Closed" i18n:attributes="title">
+  <description i18n:translate="">The project is closed.</description>
   <exit-transition transition_id="reopen"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Editor</permission-role>
