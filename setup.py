@@ -28,8 +28,8 @@ setup(name='sc.s17.project',
       zip_safe=False,
       install_requires=[
         'setuptools',
-        'plone.app.dexterity',
-        'plone.app.referenceablebehavior',
+        'plone.app.dexterity==1.0.1',
+        'plone.app.referenceablebehavior==0.3',
         ],
       extras_require={
         'test': ['plone.app.testing'],
