@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<object name="sc.s17.project.content" meta_type="Dexterity FTI"
+<object name="sc.s17.project" meta_type="Dexterity FTI"
    i18n:domain="sc.s17.project" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
   <property name="title" i18n:translate="">Project</property>
   <property name="description" i18n:translate=""></property>
   <property name="content_icon">++resource++sc.s17.project/project_icon.png</property>
-  <property name="factory">sc.s17.project.content</property>
+  <property name="factory">sc.s17.project</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
