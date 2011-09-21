@@ -2,8 +2,6 @@
 
 import unittest2 as unittest
 
-from AccessControl import Unauthorized
-
 from zope.component import createObject
 from zope.component import queryUtility
 
@@ -54,22 +52,6 @@ class IntegrationTest(unittest.TestCase):
         factory = fti.factory
         new_object = createObject(factory)
         self.failUnless(IProject.providedBy(new_object))
-
-    def test_allowed_content_types(self):
-        types = ['File', 'Image']
-        allowed_types = [t.getId() for t in self.obj.allowedContentTypes()]
-        for t in types:
-            self.failUnless(t in allowed_types)
-
-        # trying to add any other content type raises an error
-        self.assertRaises(ValueError,
-                          self.obj.invokeFactory, 'Document', 'foo')
-
-        try:
-            self.obj.invokeFactory('File', 'foo')
-            self.obj.invokeFactory('Image', 'bar')
-        except Unauthorized:
-            self.fail()
 
     def test_view(self):
         self.obj.restrictedTraverse('@@view')
