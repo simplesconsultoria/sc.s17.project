@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.1 - Unreleased
+0.1 (2011-10-20)
 ----------------
 
-* Initial release
+* Initial release [cleberjsantos]

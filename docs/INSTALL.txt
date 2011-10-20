@@ -1,5 +1,5 @@
 sc.s17.project Installation
-==========================
+============================
 
 To install sc.s17.project into the global Python environment (or a workingenv),
 using a traditional Zope 2 instance, you can do this:
